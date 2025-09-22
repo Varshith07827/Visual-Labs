@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mathematical Pattern Explorer</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="sketch.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><span class="v-letter">V</span><span class="rest-title">isual Lab</span></h1>
+      <p class="subtitle">Advanced Mathematical Pattern Visualization & Interactive Laboratory</p>
+    </header>
+
+    <div class="main-content">
+      <div class="sidebar left-panel">
+        <div class="algorithm-selector">
+          <h3>Select Algorithm</h3>
+          <select id="algoDropdown" onchange="setMode(this.value)">
+            <option value="fibonacci">Fibonacci Spiral</option>
+            <option value="lucas">Lucas Numbers</option>
+            <option value="silver">Silver Ratio</option>
+            <option value="pell">Pell Sequence</option>
+            <option value="tribonacci">Tribonacci</option>
+            <option value="plastic">Plastic Number</option>
+            <option value="pi">Pi Digits</option>
+            <option value="e">Euler's Number</option>
+            <option value="catalan">Catalan Numbers</option>
+          </select>
+        </div>
+        <div class="algorithm-info" id="algorithmInfo">
+          <h3>Algorithm Details</h3>
+          <div class="info-content" id="infoContent">
+            <p>Select an algorithm to see its mathematical description and properties.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="canvas-section">
+        <div class="canvas-container">
+          <div id="canvas-holder"></div>
+          <div class="canvas-overlay">
+            <div class="zoom-controls">
+              <button onclick="zoomIn()" title="Zoom In">🔍+</button>
+              <button onclick="zoomOut()" title="Zoom Out">🔍-</button>
+              <button onclick="resetZoom()" title="Reset Zoom">🎯</button>
+              <span class="zoom-level" id="zoomLevel">100%</span>
+            </div>
+          </div>
+        </div>
+        <div class="canvas-stats" style="display: flex; flex-direction: row; gap: 24px; align-items: center; justify-content: center; margin-top: 16px;">
+          <span>Elements: <span id="elementCount">0</span></span>
+          <span>Pattern: <span id="currentPattern">Fibonacci</span></span>
+          <span>FPS: <span id="fpsDisplay">60</span></span>
+          <span>Zoom: <span id="zoomDisplay">100%</span></span>
+        </div>
+      </div>
+
+      <div class="sidebar right-panel">
+        <div class="controls">
+          <h3>Interactive Controls</h3>
+          <div class="playback-controls" style="margin-bottom: 24px;">
+            <button onclick="togglePause()" id="pauseBtn">⏸️ Pause</button>
+            <button onclick="resetVisualization()">🔄 Reset</button>
+            <button onclick="saveFrame()">📸 Save</button>
+          </div>
+          <div class="control-group">
+            <label>Animation Speed</label>
+            <input type="range" id="speedSlider" min="1" max="10" value="2" oninput="updateSpeed(this.value)">
+            <span class="value" id="speedValue">2</span>
+          </div>
+          <div class="control-group">
+            <label>Element Size</label>
+            <input type="range" id="sizeSlider" min="2" max="15" value="6" oninput="updateSize(this.value)">
+            <span class="value" id="sizeValue">6</span>
+          </div>
+          <div class="control-group">
+            <label>Color Intensity</label>
+            <input type="range" id="colorSlider" min="50" max="255" value="200" oninput="updateColor(this.value)">
+            <span class="value" id="colorValue">200</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
